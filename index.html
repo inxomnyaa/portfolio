@@ -305,6 +305,8 @@
   const data = JSON.parse($('manifest').textContent);
   const items = data.items;
   const EDIT = location.hash === '#edit';
+  // full edit mode only in a browser that holds the owner's GitHub token (or on the local editor server)
+  const CAN_EDIT = EDIT && (location.port === '8642' || (() => { try { return !!localStorage.getItem('gh-token'); } catch (e) { return false; } })());
   // live corrections: overrides.json next to the page (written by edit mode) is applied on top of the built data
   let OVR = {};
   try { const r = await fetch('overrides.json', { cache: 'no-store' }); if (r.ok) OVR = await r.json(); } catch (e) {}
@@ -314,7 +316,7 @@
     for (const k of ['wip', 'pinned', 'hidden']) if (k in o) i[k] = !!o[k];
   }
   for (const i of items) if (OVR[i.id]) applyOverride(i, OVR[i.id]);
-  if (!EDIT) for (let n = items.length - 1; n >= 0; n--) if (items[n].hidden) items.splice(n, 1);
+  if (!CAN_EDIT) for (let n = items.length - 1; n >= 0; n--) if (items[n].hidden) items.splice(n, 1);
   items.sort((a, b) => (!!a.wip - !!b.wip) || (!!b.pinned - !!a.pinned));  // stable: keeps the built order otherwise
   const ICON_LINK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/></svg>';
   $('bio').textContent = data.about.bio;
@@ -427,7 +429,7 @@
     $('d-desc').innerHTML = md(cur.desc || '');
     $('d-anim').innerHTML = cur.anims.map(a => `<option value="${esc(a)}">${esc(prettyAnim(a))}</option>`).join('');
     $('d-anim-wrap').hidden = !cur.anims.length;
-    if (EDIT) fillEdit(cur);
+    if (CAN_EDIT) fillEdit(cur); else { $('d-edit').hidden = true; $('d-desc').hidden = false; }
     const which = cur;
     if (cur.kind === 'particle') V.loadParticle(cur.src, cur.tex).catch(console.error);
     else if (cur.kind === 'model') V.load(cur.src).then(() => { if (cur === which && cur.anims.length) { const a = pickAnim(cur); $('d-anim').value = a; V.play(a); } }).catch(console.error);
@@ -504,9 +506,9 @@
          <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener" style="color:inherit">create token ↗</a>`);
     document.body.prepend(bar);
     if (!LOCAL) {
-      const show = () => { $('e-tokstate').textContent = getTok() ? 'token set ✓' : 'no token yet:'; };
-      $('e-toksave').onclick = () => { setTok($('e-tok').value.trim()); $('e-tok').value = ''; show(); };
-      $('e-tokclear').onclick = () => { setTok(''); show(); };
+      const show = () => { $('e-tokstate').textContent = getTok() ? 'token set ✓ (editing enabled in this browser)' : 'enter your GitHub token to edit:'; };
+      $('e-toksave').onclick = () => { setTok($('e-tok').value.trim()); $('e-tok').value = ''; location.reload(); };
+      $('e-tokclear').onclick = () => { setTok(''); location.reload(); };
       show();
     }
     if (LOCAL) $('e-rebuild').onclick = async () => { $('e-rb').textContent = 'rebuilding…';
