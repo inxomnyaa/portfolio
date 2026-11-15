@@ -1,1 +1,100 @@
-[]
+[
+ {
+  "id": "added/20261115-184818-ember-jpg",
+  "title": "Ember",
+  "desc": "Ember, the NetherGames mascot.",
+  "project": "NetherGames",
+  "types": [
+   "Render",
+   "Model"
+  ],
+  "anims": [],
+  "featured": false,
+  "wip": false,
+  "pinned": false,
+  "added": "20261115-184818",
+  "category": "Mascot",
+  "kind": "image",
+  "pixel": false,
+  "src": "added/20261115-184818-ember.jpg",
+  "thumb": "added/20261115-184818-ember-thumb.jpg"
+ },
+ {
+  "id": "added/20261115-184818-football-jpg",
+  "title": "Football",
+  "desc": "Football model for [Matze997/Football](https://github.com/Matze997/Football), a project by one of the WolvesFortress staff.",
+  "project": "Commission",
+  "types": [
+   "Render",
+   "Model"
+  ],
+  "anims": [],
+  "featured": false,
+  "wip": false,
+  "pinned": false,
+  "added": "20261115-184818",
+  "category": "Model",
+  "kind": "image",
+  "pixel": false,
+  "src": "added/20261115-184818-football.jpg",
+  "thumb": "added/20261115-184818-football-thumb.jpg"
+ },
+ {
+  "id": "added/20261115-184818-lucky-block-jpg",
+  "title": "Lucky Block",
+  "desc": "",
+  "project": "NetherGames",
+  "types": [
+   "Render",
+   "Model"
+  ],
+  "anims": [],
+  "featured": false,
+  "wip": false,
+  "pinned": false,
+  "added": "20261115-184818",
+  "category": "Model",
+  "kind": "image",
+  "pixel": false,
+  "src": "added/20261115-184818-lucky-block.jpg",
+  "thumb": "added/20261115-184818-lucky-block-thumb.png"
+ },
+ {
+  "id": "added/20261115-184818-wf-quest-board-ui-jpg",
+  "title": "WF Quest Board UI",
+  "desc": "Quest board interface for WolvesFortress.",
+  "project": "WolvesFortress",
+  "types": [
+   "UI"
+  ],
+  "anims": [],
+  "featured": false,
+  "wip": false,
+  "pinned": false,
+  "added": "20261115-184818",
+  "category": "UI",
+  "kind": "image",
+  "pixel": false,
+  "src": "added/20261115-184818-wf-quest-board-ui.jpg",
+  "thumb": "added/20261115-184818-wf-quest-board-ui-thumb.jpg"
+ },
+ {
+  "id": "added/20261115-184818-cat-girl-sketch-jpg",
+  "title": "Cat Girl Sketch",
+  "desc": "Old pencil sketch from February 2023.",
+  "project": "Personal",
+  "types": [
+   "Art"
+  ],
+  "anims": [],
+  "featured": false,
+  "wip": false,
+  "pinned": false,
+  "added": "20261115-184818",
+  "category": "Sketch",
+  "kind": "image",
+  "pixel": false,
+  "src": "added/20261115-184818-cat-girl-sketch.jpg",
+  "thumb": "added/20261115-184818-cat-girl-sketch-thumb.jpg"
+ }
+]
