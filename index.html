@@ -189,10 +189,10 @@
   @media (prefers-reduced-motion: reduce) { .tile { transition: none; } }
 </style>
 
-<header class="band">
+<header class="band no-photo">
   <canvas class="stars" id="stars" aria-hidden="true"></canvas>
   <div class="wrap gutter">
-    <div class="me" id="me"></div>
+    <div class="me" id="me" hidden></div>
     <div class="intro">
       <span class="eyebrow">3D modeller &amp; animator · Minecraft &amp; Hytale</span>
       <h1>inxomnyaa</h1>
@@ -381,8 +381,7 @@
   // ---------- stage
   const featured = items.filter(i => i.featured);
   const hero = makeViewer($('hero3d'), () => !$('dlg').open && document.visibilityState === 'visible', { autoRotateSpeed: 2.2, distance: 1.2, camX: -0.4, camZ: 0.9, interactive: false });
-  if (data.about.photo) $('me').innerHTML = `<img src="${esc(data.about.photo)}" alt="inxomnyaa">`;
-  else { $('me').hidden = true; document.querySelector('.band').classList.add('no-photo'); }
+  if (data.about.photo) { $('me').innerHTML = `<img src="${esc(data.about.photo)}" alt="inxomnyaa">`; $('me').hidden = false; document.querySelector('.band').classList.remove('no-photo'); }
   let hi = 0, heroTimer = null, onceTimer = null, heroSeq = 0;
   async function showHero(n) {
     hi = (n + featured.length) % featured.length; const i = featured[hi]; const seq = ++heroSeq;
